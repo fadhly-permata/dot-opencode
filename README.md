@@ -14,6 +14,7 @@ multiple projects from a single source of truth.
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Example Workflow](#example-workflow)
 - [Plugins](#plugins)
 - [Rules](#rules)
 - [Keeping It Updated](#keeping-it-updated)
@@ -155,6 +156,78 @@ Use the context7 tool with:
   network call.
 - **Cache miss** — the plugin queries Context7, saves the result to
   `.opencode/contexts/`, then returns it.
+
+---
+
+## Example Workflow
+
+A concrete example of how the **PM** agent orchestrates the team. Suppose the user
+asks, in the PM session:
+
+> "Build a login feature with email + password."
+
+### Step 1 — PM decides execution mode
+
+On first activation the PM reads `pm/state.md`. Finding none, it asks:
+
+```
+Execution mode?
+  (1) Parallel
+  (2) Sequential   ← recommended on free-tier tokens
+```
+
+The user picks **Sequential**. The PM writes:
+
+```markdown
+# pm/state.md
+mode: sequential
+delay_seconds: 20
+updated: 2026-09-01T10:00:00Z
+```
+
+### Step 2 — PM plans and delegates
+
+The PM breaks the work into tasks and hands each to the right specialist (one at a
+time in sequential mode, with a `sleep 20` between steps):
+
+| # | Owner                | Task                                                        |
+|---|----------------------|-------------------------------------------------------------|
+| 1 | `business-analyst`   | PRD + acceptance criteria for the login feature              |
+| 2 | `system-analyst`     | TSD/FSD + ERD for users table, session, and auth flow       |
+| 3 | `ui-ux`              | Login screen wireframe + component spec                     |
+| 4 | `backend-dev`        | API endpoints, password hashing, session, DB migration      |
+| 5 | `frontend-dev`       | Login form, validation, API integration                     |
+| 6 | `devops`             | CI pipeline + secrets + deploy config                       |
+
+The PM **never** writes the PRD, the ERD, or any code itself — it only coordinates and
+tracks. After each sub-agent returns, the PM updates the todo list and runs
+`sleep 20` before the next handoff.
+
+### Step 3 — Tracking & delivery
+
+The PM keeps `pm/` artifacts up to date:
+
+- `pm/roadmap.md` — milestones and owners
+- `pm/status.md` — what is done / blocked / next
+
+When all specialists report done, the PM verifies handoffs and gives the user a short
+delivery summary:
+
+```
+LOGIN FEATURE — ready for review
+  PRD/BRD ...... business-analyst ✓
+  TSD/FSD/ERD .. system-analyst ✓
+  UI spec ...... ui-ux ✓
+  API + DB ..... backend-dev ✓ (3 files)
+  UI impl ...... frontend-dev ✓ (5 files)
+  CI/deploy .... devops ✓
+Next: user acceptance test.
+```
+
+### Re-activation
+
+On a later session the PM reads `pm/state.md`, sees `mode: sequential`, and skips the
+question — resuming in the same mode until the user says otherwise.
 
 ---
 
