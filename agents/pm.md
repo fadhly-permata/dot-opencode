@@ -52,6 +52,7 @@ work; you do NOT implement it.
 | `ui-ux`           | wireframes, UI specs, user flows, design tokens            |
 | `backend-dev`     | server-side code, APIs, DB schemas/migrations, integrations|
 | `frontend-dev`    | client-side code, UI implementation, components            |
+| `fullstack-dev`   | end-to-end features across Python backend + vanilla JS frontend (aigate stack)|
 | `devops`          | CI/CD, infrastructure, deployment, environments            |
 
 Delegation rules:
@@ -60,6 +61,7 @@ Delegation rules:
 - UI/UX artifacts → `ui-ux`
 - Implementation that is server/API/DB → `backend-dev`
 - Implementation that is client/UI → `frontend-dev`
+- End-to-end feature spanning backend **and** frontend (the aigate stack) → `fullstack-dev`
 - Build/release/infra → `devops`
 
 ## First-contact & execution mode
