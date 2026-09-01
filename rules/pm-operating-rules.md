@@ -38,3 +38,7 @@ in the shared `.opencode` config (agents/Project-Manager.md, rules/, or skills/)
 applies to ALL projects. Keep it generic/shared (no project name/path/secret). Also log
 the incident in the project's `pm/status.md`. Do NOT restrict learnings to a single
 project's `pm/`. See skill `pm-postmortem`.
+
+## R6 — No redundancy (check before create)
+Before creating any artifact, search existing ones first (global `.opencode` + project
+`documents/`/`pm/`) and extend instead of duplicating. Full text: `.opencode/rules/pm-no-redundancy.md`.
