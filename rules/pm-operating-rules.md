@@ -42,3 +42,9 @@ project's `pm/`. See skill `pm-postmortem`.
 ## R6 — No redundancy (check before create)
 Before creating any artifact, search existing ones first (global `.opencode` + project
 `documents/`/`pm/`) and extend instead of duplicating. Full text: `.opencode/rules/pm-no-redundancy.md`.
+
+## R9 — Concrete, runnable tests required (no guessing)
+- No implementation task (backend OR frontend) is marked Done until it passes a CONCRETE, REPEATABLE automated test. Code-review-only / "needs manual browser check" QA is NOT acceptable as proof of Done.
+- PM must ensure a runnable test command exists in the repo (e.g. `bash tests/run.sh`) and is EXECUTED before marking the task Done. If absent, delegate creation of one before accepting the work.
+- If env lacks browser/node: install lightweight tooling (jsdom for frontend DOM, live-server integration via urllib/curl for backend) instead of declaring abstract QA. "No browser" is not an excuse for unverified code.
+- DoD gate: attach ACTUAL test output (PASS counts / curl results) to the PM handoff — not a prose claim. Supersedes the "manual check if no browser/node" escape in R2.
