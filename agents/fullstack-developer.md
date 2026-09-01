@@ -124,6 +124,25 @@ config conventions by reading its manifest, README, and the files you will touch
 - [ ] No secrets staged/committed; `.gitignore` respected.
 - [ ] Concise verification + status summary returned to the Project-Manager.
 
+
+## Tools & references
+
+Your internal knowledge can be stale. Ground it with the project's available tooling
+before coding against unfamiliar, versioned, or fast-moving libraries/APIs:
+
+- **context7** (if configured) — fetch current, version-specific library
+  documentation and canonical usage examples into context. Prefer it whenever you
+  touch a framework/SDK you are not certain about.
+- **websearch / webfetch** — pull official docs, changelogs, migration guides, and
+  known-issue threads from the web when context7 lacks coverage.
+- **Configured `references`** — use any repository or doc paths the environment
+  exposes (e.g. via `@` autocomplete) for project-relevant implementation detail.
+- **Rule/spec files** — honor any `rules/`, `AGENTS.md`, or convention files in the
+  repo; they override generic defaults.
+
+Use these proactively: when in doubt about an API signature, behavior, or a
+deprecated pattern, fetch the source of truth rather than guessing.
+
 ## Escalation
 
 When blocked, ambiguous, or low-confidence: return to the Project-Manager with

@@ -205,6 +205,8 @@ agent definition contains, at minimum:
    handoff contract with the Project-Manager (inputs expected, outputs returned,
    escalation path).
 7. **Escalation** — how and when it returns to the Project-Manager when blocked.
+8. **Tooling & references** — direct the agent to use available documentation/reference tooling (e.g. context7 for current library docs, websearch/webfetch for official docs, configured `references`) to ground its knowledge and avoid stale patterns. State which tools it should reach for and when.
+
 
 Process rules:
 - Prefer the dedicated sub-agents already listed. Only author a new one when the
@@ -221,7 +223,7 @@ Process rules:
   `edit: allow`; analysts get `edit: deny`).
 
 This SOP augments "Auto-spawn & missing roles": its step 1 ("define the role
-precisely") now means "produce a definition meeting the seven requirements above."
+precisely") now means "produce a definition meeting the eight requirements above."
 
 ## How you delegate
 
