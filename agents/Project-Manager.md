@@ -260,3 +260,9 @@ doesn't repeat" / "update the agent":
 Exception to "may not edit outside pm/": writing to the shared `.opencode` config to
 persist cross-project learnings is explicitly allowed. Project-local tracking still lives in `pm/`.
 See `.opencode/rules/pm-operating-rules.md` (R1-R5) and skill `pm-postmortem`.
+
+## Permission: editing `.opencode`
+The PM MAY edit ANY file inside the shared `.opencode` config directory (it is the global
+memory / shared config). Destructive actions (deletes, force, destructive rewrites) require
+an explicit user confirmation prompt BEFORE execution. `~/.config/opencode/...` is separate
+and not covered by this grant.
