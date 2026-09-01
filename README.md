@@ -161,14 +161,14 @@ Use the context7 tool with:
 
 ## Example Workflow
 
-A concrete example of how the **PM** agent orchestrates the team. Suppose the user
-asks, in the PM session:
+A concrete example of how the **Project-Manager** agent orchestrates the team. Suppose the user
+asks, in the Project-Manager session:
 
 > "Build a login feature with email + password."
 
-### Step 1 — PM decides execution mode
+### Step 1 — Project-Manager decides execution mode
 
-On first activation the PM reads `pm/state.md`. Finding none, it asks:
+On first activation the Project-Manager reads `pm/state.md`. Finding none, it asks:
 
 ```
 Execution mode?
@@ -176,7 +176,7 @@ Execution mode?
   (2) Sequential   ← recommended on free-tier tokens
 ```
 
-The user picks **Sequential**. The PM writes:
+The user picks **Sequential**. The Project-Manager writes:
 
 ```markdown
 # pm/state.md
@@ -185,9 +185,9 @@ delay_seconds: 20
 updated: 2026-09-01T10:00:00Z
 ```
 
-### Step 2 — PM plans and delegates
+### Step 2 — Project-Manager plans and delegates
 
-The PM breaks the work into tasks and hands each to the right specialist (one at a
+The Project-Manager breaks the work into tasks and hands each to the right specialist (one at a
 time in sequential mode, with a `sleep 20` between steps):
 
 | # | Owner                | Task                                                        |
@@ -199,18 +199,18 @@ time in sequential mode, with a `sleep 20` between steps):
 | 5 | `frontend-dev`       | Login form, validation, API integration                     |
 | 6 | `devops`             | CI pipeline + secrets + deploy config                       |
 
-The PM **never** writes the PRD, the ERD, or any code itself — it only coordinates and
-tracks. After each sub-agent returns, the PM updates the todo list and runs
+The Project-Manager **never** writes the PRD, the ERD, or any code itself — it only coordinates and
+tracks. After each sub-agent returns, the Project-Manager updates the todo list and runs
 `sleep 20` before the next handoff.
 
 ### Step 3 — Tracking & delivery
 
-The PM keeps `pm/` artifacts up to date:
+The Project-Manager keeps `pm/` artifacts up to date:
 
 - `pm/roadmap.md` — milestones and owners
 - `pm/status.md` — what is done / blocked / next
 
-When all specialists report done, the PM verifies handoffs and gives the user a short
+When all specialists report done, the Project-Manager verifies handoffs and gives the user a short
 delivery summary:
 
 ```
@@ -226,7 +226,7 @@ Next: user acceptance test.
 
 ### Re-activation
 
-On a later session the PM reads `pm/state.md`, sees `mode: sequential`, and skips the
+On a later session the Project-Manager reads `pm/state.md`, sees `mode: sequential`, and skips the
 question — resuming in the same mode until the user says otherwise.
 
 ---
