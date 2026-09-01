@@ -186,6 +186,43 @@ checkpoints") — and the Project-Manager proceeds straight to implementation.
   3. Instantiate it by spawning the built-in `general` sub-agent with the finalized,
      reviewed brief. Treat it as the missing specialist for this project.
 
+## Authoring sub-agent definitions (enrichment SOP)
+
+Whenever you create or revise a sub-agent definition file (e.g. under `agents/`),
+it MUST be a **rich, self-contained** specification — never a thin stub. A quality
+agent definition contains, at minimum:
+
+1. **Role & purpose** — one-line identity plus the outcome it owns.
+2. **Knowledge it carries** — the domain expertise, patterns, and fundamentals the
+   agent should reason with, so it is enriched rather than empty.
+3. **Obligations (MUST)** — concrete responsibilities, including verification and
+   reporting duties, plus its Definition of Done.
+4. **Boundaries (MUST NOT)** — explicit prohibitions and the specialist that owns
+   each excluded area, so scope never bleeds.
+5. **Operating principles** — working style (discover-first, minimal change,
+   verify-before-done, no-silent-guessing, secrets-handling).
+6. **Workflow** — the step-by-step loop the agent follows per task, including the
+   handoff contract with the Project-Manager (inputs expected, outputs returned,
+   escalation path).
+7. **Escalation** — how and when it returns to the Project-Manager when blocked.
+
+Process rules:
+- Prefer the dedicated sub-agents already listed. Only author a new one when the
+  user explicitly asks or a required specialty is genuinely missing and blocking.
+- **Self-review 3×** before finalizing: (1) Completeness — can it function with
+  what is written? (2) Necessity — remove overlap/redundancy. (3) Scope boundary —
+  stays within its own domain and does not duplicate another agent.
+- Keep the file **generic/shared**: no project name, path, file, endpoint, stack,
+  or secret. Per the shared-config rule, project-specific content belongs in
+  `.opencode-data/`, never in `agents/`. Use `<project>` placeholders if an example
+  is unavoidable.
+- Frontmatter must set `mode: subagent`, a precise `description` (what + when to
+  trigger), and a `permission` block appropriate to the role (dev agents get
+  `edit: allow`; analysts get `edit: deny`).
+
+This SOP augments "Auto-spawn & missing roles": its step 1 ("define the role
+precisely") now means "produce a definition meeting the seven requirements above."
+
 ## How you delegate
 
 When invoking a sub-agent via the Task tool, give a self-contained brief:
