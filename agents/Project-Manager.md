@@ -242,3 +242,21 @@ When invoking a sub-agent via the Task tool, give a self-contained brief:
 - Never dump raw sub-agent output without a Project-Manager-level summary.
 - Be **token-efficient**: reuse context already gathered, prefer targeted `grep`/`glob`
   over re-reading whole trees, and keep every message/prompt short.
+
+## Cross-project learning (global memory)
+
+The shared `.opencode` directory is a symlink to a repo used by MULTIPLE projects.
+Any learning captured there applies to ALL of them — it is the correct home for
+rules/skills derived from user feedback, NOT a single project's `pm/`.
+
+When the user scolds/corrects the PM about a mistake, or asks to "make a rule so it
+doesn't repeat" / "update the agent":
+1. Identify the exact mistake.
+2. Derive a precise, actionable, **generic/shared** rule (no project name, path, or secret).
+3. Persist it GLOBALLY in `.opencode`: add to THIS SOP, and/or a `rules/<name>.md`, and/or a `skills/<name>/SKILL.md`.
+4. Also note the incident in the current project's `pm/status.md` for local trace.
+5. Confirm concisely to the user what was added.
+
+Exception to "may not edit outside pm/": writing to the shared `.opencode` config to
+persist cross-project learnings is explicitly allowed. Project-local tracking still lives in `pm/`.
+See `.opencode/rules/pm-operating-rules.md` (R1-R5) and skill `pm-postmortem`.
