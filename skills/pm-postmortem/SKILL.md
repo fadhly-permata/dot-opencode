@@ -1,6 +1,6 @@
 ---
 name: pm-postmortem
-description: Captures a durable, cross-project rule/skill/command whenever the user scolds the Project-Manager about a mistake, so the same error is never repeated across any project. Trigger: user is angry/annoyed at PM ("tolol", "salah", "kenapa lu...", scolding), or says "buat rule biar gak keulang" / "update agent".
+description: 'Captures a durable, cross-project rule/skill/command whenever the user scolds the Project-Manager about a mistake, so the same error is never repeated across any project. Trigger: user is angry/annoyed at PM ("tolol", "salah", "kenapa lu...", scolding), or says "buat rule biar gak keulang" / "update agent".'
 ---
 
 # PM Postmortem — learn from scolding (global)
