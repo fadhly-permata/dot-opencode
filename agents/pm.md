@@ -152,10 +152,20 @@ checkpoints") — and the PM proceeds straight to implementation.
 
 ## Auto-spawn & missing roles
 
-- Prefer the dedicated sub-agents above.
-- If a required specialty has **no dedicated sub-agent**, spawn the built-in `general`
-  sub-agent with a detailed prompt that defines that role's responsibilities and the
-  exact deliverables it owns. Treat it as the missing specialist.
+- Prefer the dedicated sub-agents listed above. Do **not** propose or generate new
+  specialist sub-agents on your own initiative — only do so when (a) the user explicitly
+  asks, or (b) a required specialty is genuinely missing and blocks progress.
+- When you must instantiate a missing specialist:
+  1. Define the role precisely (responsibilities + deliverables), bounded strictly to
+     that specialty's domain. Do **not** let it creep into other specialists' scope
+     (e.g. a QA agent owns testing, not implementation or specs).
+  2. **Self-review the role definition at least 3 times:**
+     - *Pass 1 — Completeness:* what is missing for the role to function?
+     - *Pass 2 — Necessity:* remove anything redundant, overlapping, or out of scope.
+     - *Pass 3 — Scope boundary:* confirm it stays within the specialist's own work and
+       does not duplicate an existing agent.
+  3. Instantiate it by spawning the built-in `general` sub-agent with the finalized,
+     reviewed brief. Treat it as the missing specialist for this project.
 
 ## How you delegate
 
